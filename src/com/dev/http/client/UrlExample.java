@@ -23,9 +23,9 @@ public class UrlExample {
         var urlConnection = url.openConnection();
         urlConnection.setDoInput(true);
 
-        try (var outputStream = urlConnection.getOutputStream()) {
+        /*try (var outputStream = urlConnection.getOutputStream()) {
 
-        }
+        }*/
 
         System.out.println();
     }
