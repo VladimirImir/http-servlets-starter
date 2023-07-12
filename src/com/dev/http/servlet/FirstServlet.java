@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
+import java.util.Map;
 
 @WebServlet("/first")
 public class FirstServlet extends HttpServlet {
@@ -28,11 +29,16 @@ public class FirstServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //req.getHeader("user-agent");
-        var headerNames = req.getHeaderNames();
+       /* var headerNames = req.getHeaderNames();
         while (headerNames.hasMoreElements()) {
             var header = headerNames.nextElement();
             System.out.println(req.getHeader(header));
-        }
+        }*/
+
+        var paramValue = req.getParameter("param");
+        var parameterMap = req.getParameterMap();
+        System.out.println();
+
         resp.setContentType("text/html; charset=UTF-8");
         resp.setHeader("token", "12345");
         //resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
@@ -40,6 +46,12 @@ public class FirstServlet extends HttpServlet {
         try (var writer = resp.getWriter()) {
             writer.write("Hello from First Servlet. Привет с первого сервлета!");
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        var parameterMap = req.getParameterMap();
+        System.out.println(parameterMap);
     }
 
     @Override
