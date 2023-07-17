@@ -15,6 +15,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/** HTTP. Servlets. 32. Архитектура web приложений. MVC */
+
 @WebServlet("/download")
 public class DownloadServlet extends HttpServlet {
 
