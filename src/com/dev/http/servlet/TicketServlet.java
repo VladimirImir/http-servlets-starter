@@ -1,6 +1,7 @@
 package com.dev.http.servlet;
 
 import com.dev.http.service.TicketService;
+import com.dev.http.util.JspHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,8 +20,12 @@ public class TicketServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         var flightId = Long.valueOf(req.getParameter("flightId"));
+        req.setAttribute("tickets", ticketService.findAllByFlightId(flightId));
 
-        resp.setContentType("text/html");
+        req.getRequestDispatcher(JspHelper.getPath("tickets"))
+                .forward(req, resp);
+
+        /*resp.setContentType("text/html");
         resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
         try (var printWriter = resp.getWriter()) {
             printWriter.write("<h1>Купленные билеты:</h1>");
@@ -31,6 +36,6 @@ public class TicketServlet extends HttpServlet {
                     </li>
                     """.formatted(ticketDto.getSeatNo())));
             printWriter.write("</ul>");
-        }
+        }*/
     }
 }

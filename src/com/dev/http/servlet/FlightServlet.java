@@ -1,6 +1,7 @@
 package com.dev.http.servlet;
 
 import com.dev.http.service.FlightService;
+import com.dev.http.util.JspHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,7 +19,13 @@ public class FlightServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
+        req.setAttribute("flights", flightService.findAll());
+
+        req.getRequestDispatcher(JspHelper.getPath("flights"))
+                .forward(req, resp);
+
+
+        /*resp.setContentType("text/html");
         resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
 
         var printWriter = resp.getWriter();
@@ -31,6 +38,6 @@ public class FlightServlet extends HttpServlet {
                     </li>
                     """.formatted(flightDto.getId(), flightDto.getDescription()));
         });
-        printWriter.write("</ul>");
+        printWriter.write("</ul>");*/
     }
 }
