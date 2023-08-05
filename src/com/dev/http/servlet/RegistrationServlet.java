@@ -25,9 +25,6 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (true) {
-            throw new RuntimeException();
-        }
         req.setAttribute("roles", Role.values());
         req.setAttribute("genders", Gender.values());
 

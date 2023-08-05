@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 @WebFilter(value = "/*",
-        servletNames = {
+        /*servletNames = {
                 "RegistrationServlet"
-        },
+        },*/
         initParams = {
                 @WebInitParam(name = "param1", value = "paramValue")
         },
